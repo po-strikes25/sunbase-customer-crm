@@ -1,5 +1,6 @@
 package com.crm.crm_customer.controller;
 
+import com.crm.crm_customer.entity.AuthRequest;
 import com.crm.crm_customer.entity.Customer;
 import com.crm.crm_customer.service.CustomerService;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,19 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CustomerController {
     private final CustomerService customerService;
+    // private AuthenticationManager authenticationManager;
+
+    @PostMapping("/authenticate")
+    public String generateToken(@RequestBody AuthRequest authRequest) {
+//        try {
+//            authenticationManager.authenticate(
+//                    new UsernamePasswordAuthenticationToken(authRequest.getUser_name())
+//            );
+//        } catch (Exception ex) {
+//            throw new Exception("invalid username or password");
+//        }
+//        return customerUtil.generateToken(authRequest.getUser_name());x
+    }
 
     @PostMapping("/post-customer")
     public Customer postCustomer(@RequestBody Customer customer){
