@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'SpringMongoNgFE'`, () => {
+  it(`should have as title 'ng_crm_customer'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('SpringMongoNgFE');
+    expect(app.title).toEqual('ng_crm_customer');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('SpringMongoNgFE app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('ng_crm_customer app is running!');
   });
 });

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "SpringMongoNgFE": {
+    "ng_crm_customer": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/spring-mongo-ng-fe",
+            "outputPath": "dist/ng_crm_customer",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "SpringMongoNgFE:build:production"
+              "browserTarget": "ng_crm_customer:build:production"
             },
             "development": {
-              "browserTarget": "SpringMongoNgFE:build:development"
+              "browserTarget": "ng_crm_customer:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "SpringMongoNgFE:build"
+            "browserTarget": "ng_crm_customer:build"
           }
         },
         "test": {

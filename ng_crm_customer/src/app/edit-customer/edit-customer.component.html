@@ -1,0 +1,64 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Customer Registration</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-4">
+        <div class="card">
+            <h3 class="mt-4" style="text-align: center; padding-bottom: 15px;">Sunbase Customer Portal</h3>
+            <form>
+                <div class="form-row">
+                    <div class="col-md-6 form-group">
+                        <input type="text" class="form-control" id="first_name" [(ngModel)]="customer.first_name"
+                            placeholder="First Name">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <input type="text" class="form-control" id="last_name" [(ngModel)]="customer.last_name"
+                            placeholder="Last Name">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 form-group">
+                        <input type="text" class="form-control" id="street" [(ngModel)]="customer.street"
+                            placeholder="Street">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <input type="text" class="form-control" id="address" [(ngModel)]="customer.address"
+                            placeholder="Address">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 form-group">
+                        <input type="text" class="form-control" id="city" [(ngModel)]="customer.city"
+                            placeholder="City">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <input type="text" class="form-control" id="state" [(ngModel)]="customer.state"
+                            placeholder="State">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 form-group">
+                        <input type="email" class="form-control" id="email" [(ngModel)]="customer.email"
+                            placeholder="Email">
+                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <input type="tel" class="form-control" id="phone" [(ngModel)]="customer.phone"
+                            placeholder="Phone">
+                        <div id="phoneHelp" class="form-text">We'll never share your phone number with anyone else.
+                        </div>
+                    </div>
+                </div>
+                <div class="submit-container">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
