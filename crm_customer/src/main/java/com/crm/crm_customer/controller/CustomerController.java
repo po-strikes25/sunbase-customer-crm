@@ -14,6 +14,10 @@ import java.util.List;
 public class CustomerController {
     private final CustomerService customerService;
 
+    public String greetings(){
+        return "Hello";
+    }
+
     @PostMapping("/post-customer")
     public Customer postCustomer(@RequestBody Customer customer){
         return customerService.saveOrUpdate(customer);
