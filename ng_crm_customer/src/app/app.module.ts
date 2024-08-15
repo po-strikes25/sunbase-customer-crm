@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import { SearchCustomerComponent } from './search-customer/search-customer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     EditCustomerComponent,
-    LoginComponent
+    LoginComponent,
+    SearchCustomerComponent
   ],
   imports: [
     BrowserModule,

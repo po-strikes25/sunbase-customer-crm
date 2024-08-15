@@ -1,0 +1,65 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Customers</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<div>
+    <div class="container mt-4">
+        <h3 class="mt-4 mb-4" style="text-align: center;">Customer List</h3>
+        <div class="buttons mb-4">
+            <button type="button" class="btn btn-success">
+                <i class="fas fa-user-plus"></i> Add Customer
+            </button>
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                <i class="fas fa-search"></i> Search
+            </button>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Search by First Name</a>
+                <a class="dropdown-item" href="#">Search by Last Name</a>
+                <a class="dropdown-item" href="#">Search by City</a>
+                <a class="dropdown-item" href="#">Search by State</a>
+                <a class="dropdown-item" href="#">Search by Email</a>
+                <a class="dropdown-item" href="#">Search by Phone</a>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">City</th>
+                    <th scope="col">State</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="button-container">
+                        <button type="button" class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash icon-sm"></i>
+                        </button>
+                        <button type="button" class="btn btn-warning btn-sm">
+                            <i class="fas fa-edit icon-sm"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
