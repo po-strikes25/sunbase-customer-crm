@@ -59,7 +59,6 @@ export class EditCustomerComponent {
 
   register() {
     this.createCustomer();
-    console.log(this.customer);
     this.httpClient.post(this.POST_API, this.customer, { responseType: 'text' })
       .subscribe(
         (data) => {
