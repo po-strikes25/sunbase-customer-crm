@@ -21,14 +21,15 @@ export class EditCustomerComponent {
   }
 
   constructor() {
-
+    // TO DO: HTTP CLIENT 
   }
 
   ngOnInit() {
 
   }
 
-  save() {
-
+  submit() {
+    // TO DO
+    // Hit POST API and create a customer
   }
 }
