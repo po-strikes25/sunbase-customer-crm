@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -12,6 +13,9 @@ export class EditCustomerComponent {
   customersArray: any[] = [];
 
   POST_API: string = "http://localhost:9900/crm-api/post-customer";
+  GET_BY_ID_API: string = "http://localhost:9900/crm-api/get-customer/";
+
+  currentCustomerID: any;
 
   customer = {
     first_name: '',
@@ -24,11 +28,14 @@ export class EditCustomerComponent {
     phone: ''
   }
 
-  constructor(public httpClient: HttpClient) {
+  constructor(
+    public httpClient: HttpClient,
+    public route: ActivatedRoute
+  ) {
   }
 
   ngOnInit() {
-
+    this.loadCustomer();
   }
 
   createCustomer() {
@@ -62,9 +69,27 @@ export class EditCustomerComponent {
     this.httpClient.post(this.POST_API, this.customer, { responseType: 'text' })
       .subscribe(
         (data) => {
-          console.log(data);
           alert('Customer registered successfully !');
           this.resetFields();
+        });
+  }
+
+  loadCustomer() {
+    this.route.paramMap.subscribe(params => {
+      this.currentCustomerID = params.get('id');
+      console.log(this.currentCustomerID);
+      if (this.currentCustomerID) {
+        this.fetchCustomerData(this.currentCustomerID);
+      }
+    });
+  }
+
+  fetchCustomerData(customerID: any) {
+    this.httpClient.get(this.GET_BY_ID_API + `${customerID}`)
+      .subscribe(
+        (data: any) => {
+          this.customer = data;
+          console.log(data);
         });
   }
 }

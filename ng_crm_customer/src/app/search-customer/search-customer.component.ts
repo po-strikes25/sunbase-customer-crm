@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-customer',
@@ -11,8 +12,10 @@ export class SearchCustomerComponent {
   customersRecords: any[] = [];
 
   GET_API: string = "http://localhost:9900/crm-api/get-all-customers";
+  DELETE_API: string = "http://localhost:9900/crm-api/delete-customer/";
 
   customer = {
+    customer_id: '',
     first_name: '',
     last_name: '',
     street: '',
@@ -23,8 +26,10 @@ export class SearchCustomerComponent {
     phone: ''
   }
 
-  constructor(public httpClient: HttpClient) {
-
+  constructor(
+    public httpClient: HttpClient,
+    public router: Router
+  ) {
   }
 
   search() {
@@ -32,7 +37,20 @@ export class SearchCustomerComponent {
       .subscribe(
         (data: any) => {
           this.customersRecords = data;
-          console.log(this.customersRecords);
+        });
+  }
+
+  edit(customer: any) {
+    this.router.navigate(['/edit-customer', customer.customer_id]);
+  }
+
+  delete(customer: any) {
+    let currentCustomerID = customer.customer_id;
+    console.log(currentCustomerID);
+    this.httpClient.delete(this.DELETE_API + currentCustomerID)
+      .subscribe(
+        (data: any) => {
+          console.log(data);
         });
   }
 }

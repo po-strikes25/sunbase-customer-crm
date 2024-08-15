@@ -1,5 +1,5 @@
 {
-    "/*": {
+    "/crm-api": {
       "target": "http://localhost:9900",
       "secure": false,
       "changeOrigin": true,
