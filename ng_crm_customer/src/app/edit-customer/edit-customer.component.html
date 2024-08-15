@@ -15,48 +15,48 @@
                 <div class="form-row">
                     <div class="col-md-6 form-group">
                         <input type="text" class="form-control" id="first_name" [(ngModel)]="customer.first_name"
-                            placeholder="First Name">
+                            name="first_name" placeholder="First Name">
                     </div>
                     <div class="col-md-6 form-group">
                         <input type="text" class="form-control" id="last_name" [(ngModel)]="customer.last_name"
-                            placeholder="Last Name">
+                            name="last_name" placeholder="Last Name">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-6 form-group">
-                        <input type="text" class="form-control" id="street" [(ngModel)]="customer.street"
+                        <input type="text" class="form-control" id="street" [(ngModel)]="customer.street" name="street"
                             placeholder="Street">
                     </div>
                     <div class="col-md-6 form-group">
                         <input type="text" class="form-control" id="address" [(ngModel)]="customer.address"
-                            placeholder="Address">
+                            name="address" placeholder="Address">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-6 form-group">
-                        <input type="text" class="form-control" id="city" [(ngModel)]="customer.city"
+                        <input type="text" class="form-control" id="city" [(ngModel)]="customer.city" name="city"
                             placeholder="City">
                     </div>
                     <div class="col-md-6 form-group">
-                        <input type="text" class="form-control" id="state" [(ngModel)]="customer.state"
+                        <input type="text" class="form-control" id="state" [(ngModel)]="customer.state" name="state"
                             placeholder="State">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-6 form-group">
-                        <input type="email" class="form-control" id="email" [(ngModel)]="customer.email"
+                        <input type="email" class="form-control" id="email" [(ngModel)]="customer.email" name="email"
                             placeholder="Email">
                         <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                     </div>
                     <div class="col-md-6 form-group">
-                        <input type="tel" class="form-control" id="phone" [(ngModel)]="customer.phone"
+                        <input type="tel" class="form-control" id="phone" [(ngModel)]="customer.phone" name="phone"
                             placeholder="Phone">
                         <div id="phoneHelp" class="form-text">We'll never share your phone number with anyone else.
                         </div>
                     </div>
                 </div>
                 <div class="submit-container">
-                    <button type="submit" class="btn btn-primary" (onClick)="submit()">Submit</button>
+                    <button type="submit" class="btn btn-primary" (click)="register()">Submit</button>
                 </div>
             </form>
         </div>

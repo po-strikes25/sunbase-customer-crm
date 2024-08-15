@@ -13,7 +13,7 @@
             <h3 class="mt-4" style="text-align: center; padding-bottom: 15px;">Sunbase Customer Login</h3>
             <form>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="first_name" [(ngModel)]="request.loginID"
+                    <input type="text" class="form-control" id="first_name" [(ngModel)]="request.loginID" name="loginID"
                         placeholder="Login ID">
                     <div id="usernameHelp" class="form-text">
                         <a href="#">Forgot username?</a>
@@ -21,7 +21,7 @@
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" id="last_name" [(ngModel)]="request.password"
-                        placeholder="Password">
+                        name="password" placeholder="Password">
                     <div id="passwordHelp" class="form-text">
                         <a href="#">Forgot password?</a>
                     </div>

@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/crm-api")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:9200")
 @RequiredArgsConstructor
 public class CustomerController {
     private final CustomerService customerService;

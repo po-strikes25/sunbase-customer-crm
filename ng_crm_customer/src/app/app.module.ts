@@ -7,6 +7,8 @@ import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { SearchCustomerComponent } from './search-customer/search-customer.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { SearchCustomerComponent } from './search-customer/search-customer.compo
     BrowserModule,
     AppRoutingModule,
     // important for using ngModel etc . . .
-    FormsModule
+    FormsModule,
+    // For hitting APIs
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

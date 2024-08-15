@@ -63,6 +63,11 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ng_crm_customer:build",
+            "proxyConfig": "./proxy.conf.json",
+            "port": 9200
+          },
           "configurations": {
             "production": {
               "browserTarget": "ng_crm_customer:build:production"
