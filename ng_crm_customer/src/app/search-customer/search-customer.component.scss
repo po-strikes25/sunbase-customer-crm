@@ -49,7 +49,7 @@
 
 .button-container {
     display: flex;
-    gap: 0.5rem; /* Adjust the space between buttons */
+    // gap: 0.5rem; /* Adjust the space between buttons */
     align-items: center;
 }
 .btn-sm {
@@ -63,4 +63,8 @@
 
 .buttons button i {
     font-size: 0.75rem;
+}
+
+.form-control {
+    width: 30vw;
 }

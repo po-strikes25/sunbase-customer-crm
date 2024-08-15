@@ -15,18 +15,20 @@
             <button type="button" class="btn btn-success">
                 <i class="fas fa-user-plus"></i> Add Customer
             </button>
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
                 aria-expanded="false" (click)="search()">
-                <i class="fas fa-search"></i> Search
+                <i class="fas fa-search"></i> Search by
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">First Name</a></li>
+                    <li><a class="dropdown-item" href="#">City</a></li>
+                    <li><a class="dropdown-item" href="#">Email</a></li>
+                    <li><a class="dropdown-item" href="#">Phone</a></li>
+                </ul>
             </button>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Search by First Name</a>
-                <a class="dropdown-item" href="#">Search by Last Name</a>
-                <a class="dropdown-item" href="#">Search by City</a>
-                <a class="dropdown-item" href="#">Search by State</a>
-                <a class="dropdown-item" href="#">Search by Email</a>
-                <a class="dropdown-item" href="#">Search by Phone</a>
-            </div>
+            <input type="text" class="form-control" placeholder="Search...">
+            <button class="btn btn-primary" type="button">
+                <i class="fas fa-search"></i>
+            </button>
         </div>
         <table class="table">
             <thead>
