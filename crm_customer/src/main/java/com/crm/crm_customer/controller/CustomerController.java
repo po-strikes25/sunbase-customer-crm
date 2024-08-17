@@ -3,6 +3,7 @@ package com.crm.crm_customer.controller;
 import com.crm.crm_customer.entity.Customer;
 import com.crm.crm_customer.service.CustomerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,6 +31,7 @@ public class CustomerController {
         return customer;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/get-all-customers")
     public List<Customer> getAllCustomers(){
         return customerService.getAllCustomers();
