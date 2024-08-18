@@ -1,11 +1,14 @@
 package com.crm.crm_customer.controller;
 
 import com.crm.crm_customer.entity.Customer;
+import com.crm.crm_customer.jwt.AuthTokenFilter;
 import com.crm.crm_customer.jwt.JwtUtils;
 import com.crm.crm_customer.dto.LoginRequest;
 import com.crm.crm_customer.dto.LoginResponse;
 import com.crm.crm_customer.service.CustomerService;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
@@ -32,6 +35,8 @@ import java.util.stream.Collectors;
 @CrossOrigin(origins = "http://localhost:9200")
 @RequiredArgsConstructor
 public class CustomerController {
+    private static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
+
     private final CustomerService customerService;
 
     @Autowired
@@ -56,13 +61,13 @@ public class CustomerController {
         return customer;
     }
 
-     @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/get-all-customers")
     public List<Customer> getAllCustomers(){
         return customerService.getAllCustomers();
     }
 
-     @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete-customer/{id}")
     public String deleteCustomer(@PathVariable("id") Long customerID){
         customerService.deleteCustomer(customerID);
@@ -75,9 +80,11 @@ public class CustomerController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Object> authenticateUser(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
         Authentication authentication;
         try {
+            logger.debug("Trying username: {} ", loginRequest.getUsername());
+            logger.debug("Trying password: {} ", loginRequest.getPassword());
             authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
         } catch(AuthenticationException exception) {
             Map<String, Object> map = new HashMap<>();
