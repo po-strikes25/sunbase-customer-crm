@@ -1,12 +1,31 @@
 package com.crm.crm_customer.controller;
 
 import com.crm.crm_customer.entity.Customer;
+import com.crm.crm_customer.jwt.JwtUtils;
+import com.crm.crm_customer.dto.LoginRequest;
+import com.crm.crm_customer.dto.LoginResponse;
 import com.crm.crm_customer.service.CustomerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.web.bind.annotation.*;
 
+import javax.sql.DataSource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/crm-api")
@@ -14,6 +33,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CustomerController {
     private final CustomerService customerService;
+
+    @Autowired
+    private JwtUtils jwtUtils;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
     public String greetings(){
         return "Hello";
@@ -31,12 +56,13 @@ public class CustomerController {
         return customer;
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/get-all-customers")
     public List<Customer> getAllCustomers(){
         return customerService.getAllCustomers();
     }
 
+     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete-customer/{id}")
     public String deleteCustomer(@PathVariable("id") Long customerID){
         customerService.deleteCustomer(customerID);
@@ -46,5 +72,32 @@ public class CustomerController {
     @GetMapping("/get-customer/{id}")
     public Customer getCustomerByID(@PathVariable("id") Long customerID){
         return customerService.getCustomerByID(customerID);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Object> authenticateUser(@RequestBody LoginRequest loginRequest) {
+        Authentication authentication;
+        try {
+            authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+        } catch(AuthenticationException exception) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("message", "Bad credentials");
+            map.put("status", "false");
+            return new ResponseEntity<Object>(map, HttpStatus.NOT_FOUND);
+        }
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+        String jwtToken = jwtUtils.generateTokenFromUsername(userDetails);
+
+        List<String> roles = userDetails.getAuthorities().stream()
+                                        .map((item) -> item.getAuthority())
+                                        .collect(Collectors.toList());
+
+        LoginResponse response = new LoginResponse(jwtToken, userDetails.getUsername(), roles);
+
+        return ResponseEntity.ok(response);
     }
 }
