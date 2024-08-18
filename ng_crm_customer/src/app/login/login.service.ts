@@ -14,13 +14,13 @@ export class LoginService {
     public router: Router
   ) { }
 
-  processLogin(username: string, password: string) {
+  generateToken(username: string, password: string) {
     return this.httpClient.post(this.LOGIN_API, { "username": username, "password": password });
   }
 
   loginUser(authToken: any) {
     localStorage.setItem("Token", authToken);
-    return true;
+    console.log('auth token is set in local storage');
   }
 
   isUserLoggedIn() {

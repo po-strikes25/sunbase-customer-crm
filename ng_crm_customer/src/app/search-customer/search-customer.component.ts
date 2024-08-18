@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'app-search-customer',
@@ -13,6 +14,8 @@ export class SearchCustomerComponent {
 
   GET_API: string = "http://localhost:9900/crm-api/get-all-customers";
   DELETE_API: string = "http://localhost:9900/crm-api/delete-customer/";
+
+  headers = new HttpHeaders().set('Authorization', `Bearer ${this.loginService.fetchToken()}`);
 
   customer = {
     customer_id: '',
@@ -28,12 +31,17 @@ export class SearchCustomerComponent {
 
   constructor(
     public httpClient: HttpClient,
-    public router: Router
+    public router: Router,
+    public loginService: LoginService
   ) {
   }
 
   search() {
-    this.httpClient.get(this.GET_API, {})
+
+  }
+
+  sync() {
+    this.httpClient.get(this.GET_API, { headers: this.headers })
       .subscribe(
         (data: any) => {
           this.customersRecords = data;
@@ -47,7 +55,7 @@ export class SearchCustomerComponent {
   delete(customer: any) {
     let currentCustomerID = customer.customer_id;
     console.log(currentCustomerID);
-    this.httpClient.delete(this.DELETE_API + currentCustomerID)
+    this.httpClient.delete(this.DELETE_API + currentCustomerID, { headers: this.headers })
       .subscribe(
         (data: any) => {
           console.log(data);

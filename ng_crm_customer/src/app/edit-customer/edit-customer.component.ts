@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { LoginService } from '../login/login.service';
 
 
 @Component({
@@ -14,6 +15,8 @@ export class EditCustomerComponent {
 
   POST_API: string = "http://localhost:9900/crm-api/post-customer";
   GET_BY_ID_API: string = "http://localhost:9900/crm-api/get-customer/";
+
+  headers = new HttpHeaders().set('Authorization', `Bearer ${this.loginService.fetchToken()}`);
 
   currentCustomerID: any;
 
@@ -30,7 +33,8 @@ export class EditCustomerComponent {
 
   constructor(
     public httpClient: HttpClient,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    public loginService: LoginService
   ) {
   }
 
@@ -66,7 +70,7 @@ export class EditCustomerComponent {
 
   register() {
     this.createCustomer();
-    this.httpClient.post(this.POST_API, this.customer, { responseType: 'text' })
+    this.httpClient.post(this.POST_API, this.customer, { headers: this.headers })
       .subscribe(
         (data) => {
           alert('Customer registered successfully !');
@@ -85,7 +89,7 @@ export class EditCustomerComponent {
   }
 
   fetchCustomerData(customerID: any) {
-    this.httpClient.get(this.GET_BY_ID_API + `${customerID}`)
+    this.httpClient.get(this.GET_BY_ID_API + `${customerID}`, { headers: this.headers })
       .subscribe(
         (data: any) => {
           this.customer = data;

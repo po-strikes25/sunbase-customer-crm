@@ -33,13 +33,13 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    this.loginService.processLogin(this.request.loginID, this.request.password)
-      .subscribe(
-        (data) => {
-          console.log(data);
-          alert('Loggedin successfully !');
-          this.router.navigate(['/search-customer']);
-        });
+    this.loginService.generateToken(this.request.loginID, this.request.password).subscribe(
+      (data: any) => {
+        console.log(data);
+        alert('Loggedin successfully !');
+        this.loginService.loginUser(data.jwtToken);
+        this.router.navigate(['/search-customer']);
+      });
   }
 
   reset() {
