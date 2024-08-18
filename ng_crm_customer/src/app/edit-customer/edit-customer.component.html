@@ -55,8 +55,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="submit-container">
+                <div *ngIf="!currentCustomerID" class="submit-container">
                     <button type="submit" class="btn btn-primary" (click)="register()">Submit</button>
+                </div>
+                <div *ngIf="currentCustomerID" class="submit-container">
+                    <button type="submit" class="btn btn-primary" (click)="update()">Update</button>
                 </div>
             </form>
         </div>

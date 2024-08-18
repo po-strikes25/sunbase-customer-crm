@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from '../login/login.service';
 
 
@@ -15,6 +15,7 @@ export class EditCustomerComponent {
 
   POST_API: string = "http://localhost:9900/crm-api/post-customer";
   GET_BY_ID_API: string = "http://localhost:9900/crm-api/get-customer/";
+  PUT_API: string = "http://localhost:9900/crm-api/put-customer/";
 
   headers = new HttpHeaders().set('Authorization', `Bearer ${this.loginService.fetchToken()}`);
 
@@ -34,6 +35,7 @@ export class EditCustomerComponent {
   constructor(
     public httpClient: HttpClient,
     public route: ActivatedRoute,
+    public router: Router,
     public loginService: LoginService
   ) {
   }
@@ -66,6 +68,16 @@ export class EditCustomerComponent {
       email: '',
       phone: ''
     }
+  }
+
+  update() {
+    this.httpClient.put(this.PUT_API + this.currentCustomerID, this.customer, { headers: this.headers })
+      .subscribe(
+        (data) => {
+          alert('customer updated successfully');
+          this.router.navigate(['/search-customer']);
+        }
+      );
   }
 
   register() {
