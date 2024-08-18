@@ -7,7 +7,7 @@ import { SearchCustomerComponent } from './search-customer/search-customer.compo
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/search-customer', // Default route
+    redirectTo: '/login', // Default route
     pathMatch: 'full'
   },
   {

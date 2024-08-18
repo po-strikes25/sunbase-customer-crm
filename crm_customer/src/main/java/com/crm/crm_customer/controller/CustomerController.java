@@ -61,13 +61,13 @@ public class CustomerController {
         return customer;
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    // @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/get-all-customers")
     public List<Customer> getAllCustomers(){
         return customerService.getAllCustomers();
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    // @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete-customer/{id}")
     public String deleteCustomer(@PathVariable("id") Long customerID){
         customerService.deleteCustomer(customerID);
@@ -79,7 +79,7 @@ public class CustomerController {
         return customerService.getCustomerByID(customerID);
     }
 
-    @PostMapping("/login")
+    @RequestMapping(value="/login", method = RequestMethod.POST)    // changed from @PostMapping
     public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
         Authentication authentication;
         try {
