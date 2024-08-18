@@ -19,7 +19,7 @@ export class EditCustomerComponent {
 
   headers = new HttpHeaders().set('Authorization', `Bearer ${this.loginService.fetchToken()}`);
 
-  currentCustomerID: any;
+  currentCustomerID: any = null;
 
   customer = {
     first_name: '',

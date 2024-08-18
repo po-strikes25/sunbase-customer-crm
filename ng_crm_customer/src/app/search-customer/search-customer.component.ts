@@ -36,6 +36,10 @@ export class SearchCustomerComponent {
   ) {
   }
 
+  createCustomer() {
+    this.router.navigate(['/edit-customer', 0]);
+  }
+
   search() {
 
   }
